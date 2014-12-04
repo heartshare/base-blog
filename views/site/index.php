@@ -6,8 +6,6 @@ use yii\widgets\ListView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Posts';
-$this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="row">
 	<div class="col-sm-8 col-md-9">

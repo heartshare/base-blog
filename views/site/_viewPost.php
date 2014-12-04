@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-
 ?>
 
 <header class="post-short-header">

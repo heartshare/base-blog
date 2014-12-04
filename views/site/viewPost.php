@@ -4,7 +4,6 @@
 /* @var $model app\models\Post */
 
 $this->title = $model->title . ' - ' . Yii::$app->name;
-
 ?>
 
 <div class="row">
