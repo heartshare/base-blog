@@ -13,7 +13,7 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 				<header class="post-header">
 					<h1><?= $model->title; ?></h1>
 					<div class="post-meta">
-						<time class="post-time"><?= $model->create_time ?></time>
+						<time class="post-time"><?= $model->displayDate() ?></time>
 					</div>
 				</header>
 				<?= $model->content; ?>

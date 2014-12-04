@@ -85,4 +85,12 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tag::className(), ['tag_id' => 'tag_id'])->viaTable('post_tag', ['post_id' => 'post_id']);
     }
+    
+    /**
+     * Displays post's creation time
+     */
+    public function displayDate()
+    {
+		return Yii::$app->formatter->asDate($this->create_time, 'long');
+	}
 }
