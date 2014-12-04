@@ -6,32 +6,17 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use yii\web\NotFoundHttpException;
+use yii\data\ActiveDataProvider;
 use app\models\ContactForm;
+use app\models\Post;
+
 
 class SiteController extends Controller
 {
     public function behaviors()
     {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
+		return [];
     }
 
     public function actions()
@@ -47,32 +32,34 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Lists all Post models.
+     * @return mixed
+     */
     public function actionIndex()
     {
-        return $this->render('index');
+        $dataProvider = new ActiveDataProvider([
+			'query' => Post::find(),
+			'pagination' => [
+				'defaultPageSize' => 5,
+			],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
-
-    public function actionLogin()
+    
+    /**
+     * Displays a single Post model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
     {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+        return $this->render('viewPost', [
+            'model' => $this->findModel($id),
+        ]);
     }
 
     public function actionContact()
@@ -92,5 +79,21 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    
+    /**
+     * Finds the Post model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Post the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Post::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }
