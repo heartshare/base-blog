@@ -43,6 +43,12 @@ class SiteController extends Controller
 			'pagination' => [
 				'defaultPageSize' => 5,
 			],
+			'sort' => [
+				'attributes' => ['create_time'],
+				'defaultOrder' => [
+					'create_time' => SORT_DESC,
+			     ]
+            ],
         ]);
 
         return $this->render('index', [
@@ -75,7 +81,7 @@ class SiteController extends Controller
             ]);
         }
     }
-
+	
     public function actionAbout()
     {
         return $this->render('about');
