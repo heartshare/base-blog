@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "post".
@@ -87,10 +88,22 @@ class Post extends \yii\db\ActiveRecord
     }
     
     /**
-     * Displays post's creation time
+     * Returns post's creation time
      */
     public function displayDate()
     {
 		return Yii::$app->formatter->asDate($this->create_time, 'long');
+	}
+	
+	/**
+	 * 
+	 */
+	public function displayTags()
+	{
+		$tags = '';
+		foreach ($this->tags as $tag) {
+			$tags .= Html::a($tag->name, ['site/tag', 'name' => $tag->name]) . ', ';
+		}
+		return rtrim($tags, ', ');
 	}
 }

@@ -57,6 +57,31 @@ class SiteController extends Controller
     }
     
     /**
+     * Lists all Post models that are tagged with $name.
+     * @return mixed
+     */
+    public function actionTag($name)
+    {
+		$query = Post::find()->joinWith('tags')->where('tag.name = :name', [':name' => $name]);
+		
+        $dataProvider = new ActiveDataProvider([
+			'query' => $query,
+			'pagination' => [
+				'defaultPageSize' => 5,
+			],
+			'sort' => [
+				'attributes' => ['create_time'],
+				'defaultOrder' => [
+					'create_time' => SORT_DESC,
+			     ]
+            ],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    /**
      * Displays a single Post model.
      * @param integer $id
      * @return mixed

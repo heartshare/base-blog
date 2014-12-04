@@ -14,6 +14,7 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 					<h1><?= $model->title; ?></h1>
 					<div class="post-meta">
 						<time class="post-time"><?= $model->displayDate() ?></time>
+						<span class="post-tags"><?= $model->displayTags() ?></span>
 					</div>
 				</header>
 				<?= $model->content; ?>
