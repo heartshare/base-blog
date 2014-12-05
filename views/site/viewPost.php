@@ -21,6 +21,7 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 				</header>
 				<?= $model->content; ?>
 			</article>
+		</section>
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
 		<?= LatestPosts::widget() ?>
