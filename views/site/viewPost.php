@@ -1,5 +1,7 @@
 <?php
 
+use app\widgets\LatestPosts;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
@@ -21,6 +23,6 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 			</article>
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
-		
+		<?= LatestPosts::widget() ?>
 	</div>
 </div>
