@@ -38,8 +38,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+		$query = Post::find()->where(['status' => Post::STATUS_PUBLISHED]);
+		
         $dataProvider = new ActiveDataProvider([
-			'query' => Post::find(),
+			'query' => $query,
 			'pagination' => [
 				'defaultPageSize' => 5,
 			],
@@ -62,7 +64,7 @@ class SiteController extends Controller
      */
     public function actionTag($name)
     {
-		$query = Post::find()->joinWith('tags')->where('tag.name = :name', [':name' => $name]);
+		$query = Post::find()->joinWith('tags')->where('tag.name = :name', [':name' => $name])->andWhere(['status' => Post::STATUS_PUBLISHED]);
 		
         $dataProvider = new ActiveDataProvider([
 			'query' => $query,
@@ -122,6 +124,7 @@ class SiteController extends Controller
     protected function findModel($id)
     {
         if (($model = Post::findOne($id)) !== null) {
+			$model->updateCounters(['views' => 1]);
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

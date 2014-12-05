@@ -22,7 +22,13 @@ use yii\helpers\Html;
  * @property Tag[] $tags
  */
 class Post extends \yii\db\ActiveRecord
-{
+{	
+	/**
+	 * Constants for status column 
+	 */
+	const STATUS_PUBLISHED = 1;
+	const STATUS_ARCHIVED = 2;
+	
     /**
      * @inheritdoc
      */
