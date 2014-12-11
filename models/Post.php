@@ -120,4 +120,22 @@ class Post extends \yii\db\ActiveRecord
     {
 		return $this->getComments()->count();
 	}
+	
+	/**
+	 * @return string Link to comments section of post 
+	 */
+	public function commentsLink() 
+	{
+		switch($this->getCommentCount()) {
+			case 0:
+				return 'No comments';
+				break;
+			case 1:
+				return Html::a('1 comment', ['site/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comments']);
+				break;
+			default:
+				return Html::a($this->getCommentCount() . ' comments', ['site/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comments']);
+				break;
+		}
+	}
 }

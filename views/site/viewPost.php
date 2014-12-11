@@ -15,8 +15,9 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 				<header class="post-header">
 					<h1><?= $model->title; ?></h1>
 					<div class="post-meta">
-						<time class="post-time"><?= $model->displayDate() ?></time>
-						<span class="post-tags"><?= $model->displayTags() ?></span>
+						<time class="post-time"><?= $model->displayDate() ?></time> - 
+						<span class="post-tags"><?= $model->displayTags() ?></span> - 
+						<span class="post-comments-link"><?= $model->commentsLink() ?></span>
 					</div>
 				</header>
 				<?= $model->content; ?>
