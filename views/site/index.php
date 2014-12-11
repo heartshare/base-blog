@@ -15,7 +15,7 @@ $this->title = 'Posts';
 				'dataProvider' => $dataProvider,
 				'itemOptions' => [
 					'tag' => 'article',
-					'class' => 'post-short',
+					'class' => 'post',
 				],
 				'itemView' => '_viewPost',
 				'layout' => "{items}\n{pager}",
