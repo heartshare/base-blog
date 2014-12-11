@@ -94,7 +94,7 @@ class Post extends \yii\db\ActiveRecord
     }
     
     /**
-     * Returns post's creation time
+     * @return string Post create time
      */
     public function displayDate()
     {
@@ -102,7 +102,7 @@ class Post extends \yii\db\ActiveRecord
 	}
 	
 	/**
-	 * 
+	 * @return string Tags that post is tagged with
 	 */
 	public function displayTags()
 	{
@@ -111,5 +111,13 @@ class Post extends \yii\db\ActiveRecord
 			$tags .= Html::a($tag->name, ['site/tag', 'name' => $tag->name]) . ', ';
 		}
 		return rtrim($tags, ', ');
+	}
+	
+	/**
+     * @return integer Number of comments on post
+     */
+    public function getCommentCount()
+    {
+		return $this->getComments()->count();
 	}
 }

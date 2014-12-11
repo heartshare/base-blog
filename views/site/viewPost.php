@@ -21,6 +21,9 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 				</header>
 				<?= $model->content; ?>
 			</article>
+			<?php if ($model->commentCount > 0): ?>
+				<?php echo $this->render('_commentList', ['comments' => $model->comments]); ?>
+			<?php endif; ?>
 		</section>
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">

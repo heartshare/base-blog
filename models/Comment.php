@@ -66,4 +66,12 @@ class Comment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Post::className(), ['post_id' => 'post_id']);
     }
+    
+    /**
+     * @return string Comment create time  
+     */
+    public function displayDate()
+    {
+		return Yii::$app->formatter->asDate($this->create_time, 'long');
+	}
 }
