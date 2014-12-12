@@ -20,6 +20,8 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($comment, 'email')->textInput(['maxlength' => 128, 'placeholder' => 'Your Email']) ?>
 		
+		<?= $form->field($comment, 'url')->textInput(['maxlength' => 128, 'placeholder' => 'Your Website']) ?>
+		
 		<?= $form->field($comment, 'content')->textarea(['rows' => 6, 'placeholder' => 'Your Comment']) ?>
 
 		<?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
