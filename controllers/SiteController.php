@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
 use app\models\ContactForm;
 use app\models\Post;
+use app\models\Comment;
 
 
 class SiteController extends Controller
@@ -90,8 +91,22 @@ class SiteController extends Controller
      */
     public function actionView($id)
     {
+		$model = $this->findModel($id);
+		$comment = new Comment;
+		
+		if($comment->load(Yii::$app->request->post()) && $model->addComment($comment)) {
+			if($comment->status === Comment::STATUS_PENDING) {
+				Yii::$app->session->setFlash('commentPosted', 'Thanks for posting. Comment will be published when it is approved.');
+				return $this->refresh('#comment-posted');
+			} else {
+				Yii::$app->session->setFlash('commentPosted', 'Thanks for posting.');
+				return $this->refresh('#comment-posted');
+			}
+		}
+		
         return $this->render('viewPost', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'comment' => $comment,
         ]);
     }
 

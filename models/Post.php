@@ -74,7 +74,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getComments()
     {
-        return $this->hasMany(Comment::className(), ['post_id' => 'post_id']);
+        return $this->hasMany(Comment::className(), ['post_id' => 'post_id'])->where(['status' => Comment::STATUS_PUBLISHED]);
     }
 
     /**
@@ -92,6 +92,22 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tag::className(), ['tag_id' => 'tag_id'])->viaTable('post_tag', ['post_id' => 'post_id']);
     }
+    
+    /**
+     * Adds a comment to the database.
+     * @return boolean
+     */
+    public function addComment($comment)
+    {
+		$comment->post_id = $this->post_id;
+		if (Yii::$app->params['commentNeedApproval']) {
+			$comment->status = Comment::STATUS_PENDING;
+		} else {
+			$comment->status = Comment::STATUS_APPROVED;
+		}
+		
+		return $comment->save();
+	}
     
     /**
      * @return string Post create time

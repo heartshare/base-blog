@@ -26,6 +26,13 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 				<?php echo $this->render('_commentList', ['comments' => $model->comments]); ?>
 			<?php endif; ?>
 		</section>
+		<?php if (Yii::$app->session->hasFlash('commentPosted')): ?>
+			<div id="comment-posted" class="alert alert-success">
+				<?php echo Yii::$app->session->getFlash('commentPosted');?>
+			</div>
+		<?php else: ?>
+			<?php echo $this->render('_commentForm', ['comment' => $comment]); ?>
+		<?php endif; ?>
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
 		<?= LatestPosts::widget() ?>

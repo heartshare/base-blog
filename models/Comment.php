@@ -20,6 +20,12 @@ use Yii;
  */
 class Comment extends \yii\db\ActiveRecord
 {
+	/**
+	 * Constants for status column
+	 */
+	const STATUS_PUBLISHED = 1;
+	const STATUS_PENDING = 2;
+	
     /**
      * @inheritdoc
      */
