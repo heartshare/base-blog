@@ -8,9 +8,9 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<h4>Leave a Comment</h4>
 <div class="row">
 	<div id="comment-form" class="comment-form col-sm-9">
+		<h4>Leave a Comment</h4>
 		
 		<?php $form = ActiveForm::begin([
 			'validateOnBlur' => false,
