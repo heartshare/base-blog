@@ -103,7 +103,7 @@ class Post extends \yii\db\ActiveRecord
 		if (Yii::$app->params['commentNeedApproval']) {
 			$comment->status = Comment::STATUS_PENDING;
 		} else {
-			$comment->status = Comment::STATUS_APPROVED;
+			$comment->status = Comment::STATUS_PUBLISHED;
 		}
 		
 		return $comment->save();
