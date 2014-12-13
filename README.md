@@ -45,11 +45,12 @@ return [
 ];
 ```
 
-Data is stored in relational database (MySQL). You can populate the database by executing `yii migrate` console command.
+Data is stored in relational database (MySQL). You can set up the database by executing `yii migrate` console command.
 
 
 WIP
 ---
 
-Application is not complete. More functionality will be added.
+- admin section
+- design
 
