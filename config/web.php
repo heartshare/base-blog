@@ -48,6 +48,14 @@ $config = [
 				'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 			],
         ],
+        'assetManager' => [
+			'bundles' => [
+				'yii\web\JqueryAsset' => [
+					'sourcePath' => null,
+					'js' => ['//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js']
+				],
+			],
+		],
     ],
     'params' => $params,
 ];
