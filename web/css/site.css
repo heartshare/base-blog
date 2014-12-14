@@ -89,3 +89,40 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+/***** WIDGETS *****/
+
+.widget {
+	margin-bottom: 30px;
+}
+.widget:last-child {
+	margin-bottom: 0;
+}
+.widget h3 {
+	text-transform: uppercase;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+.widget ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.widget li {
+	padding-bottom: 6px;
+	margin-bottom: 6px;
+	border-bottom: 1px solid #eee;
+}
+.widget li:last-child {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	border: none;
+}
+.widget li > a {
+	display: block;
+	text-decoration: none;
+}
+.widget li time {
+	color: #777;
+	font-size: 12px;
+}
