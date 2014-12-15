@@ -7,6 +7,11 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'defaultRoute' => 'post/index',
+    'modules' => [
+		'admin' => [
+			'class' => 'app\modules\admin\Module',
+		],
+    ],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'f7p4eRjggPGz0Nrvn-lsZOM15iKgun9I',
