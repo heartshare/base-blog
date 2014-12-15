@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\PostSearch */
@@ -24,17 +25,36 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'post_id',
             'title',
             'slug',
-            'description:ntext',
-            'content:ntext',
-            // 'status',
-            // 'update_time',
-            // 'create_time',
-            // 'views',
-
+            [
+				'attribute' => 'status',
+				'value' => function ($model, $key, $index, $column) {
+						return $model->status === Post::STATUS_PUBLISHED? 'Published' : 'Archived';
+						
+					},
+				'filter' => [
+					Post::STATUS_PUBLISHED => 'Published',
+					Post::STATUS_ARCHIVED => 'Archived',
+				],
+            ],
+            'views',
+            [
+				'attribute' => 'create_time',
+				'format' => [
+					'date',
+					'medium',
+				],
+				'filter' => false,
+            ],
+            [
+				'attribute' => 'update_time',
+				'format' => [
+					'date',
+					'medium',
+				],
+				'filter' => false,
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
