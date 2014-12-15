@@ -17,7 +17,7 @@ $this->title = 'Posts';
 					'tag' => 'article',
 					'class' => 'post',
 				],
-				'itemView' => '_viewPost',
+				'itemView' => '_view',
 				'layout' => "{items}\n{pager}",
 			]) ?>
 		</section>

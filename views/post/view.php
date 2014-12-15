@@ -38,3 +38,4 @@ $this->title = $model->title . ' - ' . Yii::$app->name;
 		<?= LatestPosts::widget() ?>
 	</div>
 </div>
+

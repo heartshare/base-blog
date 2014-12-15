@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'post/index',
     'components' => [
         'request' => [
             'cookieValidationKey' => 'f7p4eRjggPGz0Nrvn-lsZOM15iKgun9I',
@@ -41,10 +42,10 @@ $config = [
 			'enablePrettyUrl' => true,
 			'showScriptName' => false,
 			'rules' => [
-				'<controller:site>/<action:(about|contact)>' => '<controller>/<action>',
-				'page/<page:\d+>' => 'site/index',
-				'tag/<name:\w+>' => 'site/tag',
-				'<id>/<slug>' => 'site/view',
+				'page/<page:\d+>' => 'post/index',
+				'tag/<name:\w+>' => 'post/tag',
+				'<id>/<slug>' => 'post/view',
+				'<action:(about|contact)>' => 'site/<action>',
 				'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 			],
         ],

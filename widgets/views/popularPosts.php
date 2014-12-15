@@ -9,7 +9,7 @@ use yii\helpers\Html;
 	<ul>
 	<?php foreach ($posts as $post): ?>
 		<li>
-			<?= Html::a($post->title, ['site/view', 'id' => $post->post_id, 'slug' => $post->slug]) ?>
+			<?= Html::a($post->title, ['post/view', 'id' => $post->post_id, 'slug' => $post->slug]) ?>
 			<time><?= $post->displayDate() ?></time>
 		</li>
 	<?php endforeach; ?>

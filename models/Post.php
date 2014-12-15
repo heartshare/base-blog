@@ -124,7 +124,7 @@ class Post extends \yii\db\ActiveRecord
 	{
 		$tags = '';
 		foreach ($this->tags as $tag) {
-			$tags .= Html::a($tag->name, ['site/tag', 'name' => $tag->name]) . ', ';
+			$tags .= Html::a($tag->name, ['post/tag', 'name' => $tag->name]) . ', ';
 		}
 		return rtrim($tags, ', ');
 	}
@@ -146,13 +146,13 @@ class Post extends \yii\db\ActiveRecord
 		
 		switch($commentCount) {
 			case 0:
-				return Html::a('Leave a comment', ['site/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comment-form']);
+				return Html::a('Leave a comment', ['post/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comment-form']);
 				break;
 			case 1:
-				return Html::a('1 comment', ['site/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comments']);
+				return Html::a('1 comment', ['post/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comments']);
 				break;
 			default:
-				return Html::a($commentCount . ' comments', ['site/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comments']);
+				return Html::a($commentCount . ' comments', ['post/view', 'id' => $this->post_id, 'slug' => $this->slug, '#' => 'comments']);
 				break;
 		}
 	}
