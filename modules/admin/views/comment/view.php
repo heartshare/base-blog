@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
 		<?php if ($model->status === Comment::STATUS_PENDING): ?>
 			<?= Html::a('Approve', ['approve', 'id' => $model->comment_id], [
-				'class' => 'btn btn-sm btn-primary',
+				'class' => 'btn btn-sm btn-success',
 			]) ?>
 		<?php endif; ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->comment_id], [
