@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use app\models\Post;
+use app\modules\admin\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\PostSearch */
