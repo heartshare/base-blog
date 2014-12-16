@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\modules\admin\models\Comment;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\CommentSearch */
@@ -24,17 +25,31 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'comment_id',
-            'post_id',
+            'post.title:text:Post',
             'content:ntext',
-            'status',
+            [
+				'attribute' => 'status',
+				'format' => 'html',
+				'value' => function ($model, $key, $index, $column) {
+				    return $model->status === Comment::STATUS_PUBLISHED ? 'Published' : Html::a('Approve', ['approve', 'id' => $model->comment_id]);
+				},
+				'filter' => [
+					Comment::STATUS_PUBLISHED => 'Published',
+					Comment::STATUS_PENDING => 'Pending',
+				],
+            ],
             'author',
-            // 'email:email',
-            // 'url:url',
-            // 'create_time',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'email:email',
+            'url:url',
+            [
+				'attribute' => 'create_time',
+				'format' => ['date', 'medium'],
+				'filter' => false,
+            ],
+            [
+				'class' => 'yii\grid\ActionColumn',
+				'template' => '{view}{delete}',
+			],
         ],
     ]); ?>
 

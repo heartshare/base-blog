@@ -20,6 +20,12 @@ use Yii;
  */
 class Comment extends \yii\db\ActiveRecord
 {
+	/**
+	 * Constants for status column
+	 */
+	const STATUS_PUBLISHED = 1;
+	const STATUS_PENDING = 2;
+	
     /**
      * @inheritdoc
      */
@@ -66,4 +72,10 @@ class Comment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Post::className(), ['post_id' => 'post_id']);
     }
+    
+    public function approve()
+    {
+		$this->status = self::STATUS_PUBLISHED;
+		return $this->update();
+	}
 }
