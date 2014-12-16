@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Post */
@@ -10,23 +11,29 @@ use yii\widgets\ActiveForm;
 
 <div class="post-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['validateOnBlur' => false]); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
+    <div class="row">
+		<div class="col-sm-6">
+			<?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
+		</div>
+	</div>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
+	<div class="row">
+		<div class="col-sm-6">
+			 <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
+		</div>
+	</div>
+   
+    <div class="row">
+		<div class="col-sm-3">
+			 <?= $form->field($model, 'status')->dropDownList([Post::STATUS_PUBLISHED => 'Published', Post::STATUS_ARCHIVED => 'Archived']) ?>
+		</div>
+    </div>
+   
+	<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>	
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'update_time')->textInput() ?>
-
-    <?= $form->field($model, 'create_time')->textInput() ?>
-
-    <?= $form->field($model, 'views')->textInput() ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 12]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
