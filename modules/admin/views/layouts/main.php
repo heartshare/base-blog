@@ -36,6 +36,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => 'Posts', 'url' => ['post/index']],
                     ['label' => 'Comments', 'url' => ['comment/index']],
+                    ['label' => 'Logout' , 'url' => ['default/logout']],
                 ],
             ]);
             NavBar::end();

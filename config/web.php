@@ -19,12 +19,12 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
-        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'user' => [
+            'identityClass' => 'app\modules\admin\models\User',
+            'loginUrl' => ['admin/default/login'],
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

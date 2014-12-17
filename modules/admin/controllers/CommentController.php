@@ -8,6 +8,7 @@ use app\modules\admin\models\CommentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * CommentController implements the CRUD actions for Comment model.
@@ -23,6 +24,15 @@ class CommentController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+				'class' => AccessControl::classname(),
+				'rules' => [
+					[
+						'allow' => true,
+						'roles' => ['@'],
+					],
+				],
+			],
         ];
     }
 
