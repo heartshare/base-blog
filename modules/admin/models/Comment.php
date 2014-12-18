@@ -73,9 +73,28 @@ class Comment extends \yii\db\ActiveRecord
         return $this->hasOne(Post::className(), ['post_id' => 'post_id']);
     }
     
+    /**
+     * Approves comment. Changes status to published.
+     * @return boolean
+     */
     public function approve()
     {
 		$this->status = self::STATUS_PUBLISHED;
 		return $this->update();
+	}
+	
+	/**
+	 * Displays in brackets number of comments that are waiting approval.
+	 * @return string $pending
+	 */
+	public static function pending()
+	{
+		$pendingComments = self::find()->where(['status' => self::STATUS_PENDING])->asArray()->all();
+		$pending = count($pendingComments);
+		if ($pending == 0) {
+			return false;
+		} else {
+			return $pending = ' ('. $pending .')';
+		}
 	}
 }

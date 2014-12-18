@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use app\assets\AppAsset;
+use app\modules\admin\models\Comment;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -35,7 +36,7 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
                     ['label' => 'Posts', 'url' => ['post/index']],
-                    ['label' => 'Comments', 'url' => ['comment/index']],
+                    ['label' => 'Comments' . Comment::pending(), 'url' => ['comment/index']],
                     ['label' => 'Logout' , 'url' => ['default/logout']],
                 ],
             ]);
