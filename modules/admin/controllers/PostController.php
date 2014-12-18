@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\modules\admin\models\Post;
 use app\modules\admin\models\PostSearch;
+use app\modules\admin\models\PostTag;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -73,6 +74,14 @@ class PostController extends Controller
         $model = new Post();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			$tags = Yii::$app->request->post('Post')['tags'];
+			foreach($tags as $tag) {
+				$postTag = new PostTag();
+				$postTag->post_id = $model->post_id;
+				$postTag->tag_id = $tag;
+				$postTag->save();
+			}
+			
             return $this->redirect(['view', 'id' => $model->post_id]);
         } else {
             return $this->render('create', [
@@ -92,6 +101,17 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			PostTag::deleteAll('post_id = :post_id', [':post_id' => $model->post_id]);
+			$tags = Yii::$app->request->post('Post')['tags'];
+			foreach($tags as $tag) {
+				$postTag = new PostTag();
+				$postTag->post_id = $model->post_id;
+				$postTag->tag_id = $tag;
+				if(!PostTag::findOne(['post_id' => $postTag->post_id, 'tag_id' => $postTag->tag_id])) {
+					$postTag->save();
+				}
+			}
+			
             return $this->redirect(['view', 'id' => $model->post_id]);
         } else {
             return $this->render('update', [

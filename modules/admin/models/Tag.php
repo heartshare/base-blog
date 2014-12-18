@@ -61,4 +61,18 @@ class Tag extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Post::className(), ['post_id' => 'post_id'])->viaTable('post_tag', ['tag_id' => 'tag_id']);
     }
+    
+    /**
+     * Returns an array of available tags (keys are tag indexes and values are tag names).
+     * @return array $tags
+     */
+    public static function tagList()
+    {
+		$tags = [];
+		$tagModels = self::find()->all();
+		foreach($tagModels as $tag) {
+			$tags[$tag->tag_id] = $tag->name;
+		}
+		return $tags;
+	}
 }
