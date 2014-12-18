@@ -38,6 +38,7 @@ AppAsset::register($this);
                     ['label' => 'Posts', 'url' => ['post/index']],
                     ['label' => 'Comments' . Comment::pending(), 'url' => ['comment/index']],
                     ['label' => 'Logout' , 'url' => ['default/logout']],
+                    ['label' => 'Frontend', 'url' => Yii::$app->homeUrl],
                 ],
             ]);
             NavBar::end();

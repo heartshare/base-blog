@@ -37,6 +37,7 @@ AppAsset::register($this);
                     ['label' => 'Home', 'url' => Yii::$app->homeUrl],
                     ['label' => 'About', 'url' => ['/site/about']],
                     ['label' => 'Contact', 'url' => ['/site/contact']],
+                    ['label' => 'Admin', 'url' => ['/admin'], 'visible' => Yii::$app->user->isGuest ? false : true],
                 ],
             ]);
             NavBar::end();
