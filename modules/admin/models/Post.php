@@ -5,6 +5,7 @@ namespace app\modules\admin\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\SluggableBehavior;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "post".
@@ -112,4 +113,39 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tag::className(), ['tag_id' => 'tag_id'])->viaTable('post_tag', ['post_id' => 'post_id']);
     }
+    
+    /**
+     * @return string Post create time
+     */
+    public function displayCreatedDate()
+    {
+		return Yii::$app->formatter->asDate($this->create_time, 'long');
+	}
+	
+	/**
+     * @return string Post update time
+     */
+    public function displayUpdatedDate()
+    {
+		return Yii::$app->formatter->asDate($this->update_time, 'long');
+	}
+	
+	/**
+	 * @return string Tags that post is tagged with
+	 */
+	public function displayTags()
+	{
+		$tags = '';
+		foreach ($this->tags as $tag) {
+			$tags .= $tag->name . ', ';
+		}
+		return rtrim($tags, ', ');
+	}
+	/**
+     * @return integer Number of comments on post
+     */
+    public function getCommentCount()
+    {
+		return $this->getComments()->count();
+	}
 }
