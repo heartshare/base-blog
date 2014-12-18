@@ -19,12 +19,6 @@ use app\modules\admin\models\Tag;
 			<?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="col-sm-6">
-			 <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
-		</div>
-	</div>
    
     <div class="row">
 		<div class="col-sm-3">

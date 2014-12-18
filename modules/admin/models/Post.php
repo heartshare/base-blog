@@ -3,6 +3,8 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "post".
@@ -36,6 +38,23 @@ class Post extends \yii\db\ActiveRecord
     {
         return 'post';
     }
+    
+    public function behaviors()
+    {
+		return [
+			'timestamp' => [
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'create_time',
+				'updatedAtAttribute' => 'update_time',
+				'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'sluggable' => [
+				'class' => SluggableBehavior::className(),
+				'attribute' => 'title',
+				'slugAttribute' => 'slug',
+            ],
+		];
+	}
 
     /**
      * @inheritdoc
