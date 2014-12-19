@@ -26,17 +26,6 @@ class PostTag extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            [['post_id', 'tag_id'], 'required'],
-            [['post_id', 'tag_id'], 'integer']
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [

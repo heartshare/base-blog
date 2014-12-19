@@ -40,21 +40,6 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            [['title', 'slug', 'description', 'content', 'status'], 'required'],
-            [['description', 'content'], 'string'],
-            [['status'], 'integer'],
-            [['update_time', 'create_time'], 'safe'],
-            [['title', 'slug'], 'string', 'max' => 255],
-            [['slug'], 'unique']
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -94,6 +79,15 @@ class Post extends \yii\db\ActiveRecord
     }
     
     /**
+     * Returns number of comments on post.
+     * @return integer 
+     */
+    public function getCommentCount()
+    {
+		return $this->getComments()->count();
+	}
+    
+    /**
      * Adds a comment to the database.
      * @return boolean
      */
@@ -110,7 +104,8 @@ class Post extends \yii\db\ActiveRecord
 	}
     
     /**
-     * @return string Post create time
+     * Returns post create time.
+     * @return string 
      */
     public function displayDate()
     {
@@ -118,7 +113,8 @@ class Post extends \yii\db\ActiveRecord
 	}
 	
 	/**
-	 * @return string Tags that post is tagged with
+	 * Returns tags that post is tagged with (as links).
+	 * @return string 
 	 */
 	public function displayTags()
 	{
@@ -130,15 +126,8 @@ class Post extends \yii\db\ActiveRecord
 	}
 	
 	/**
-     * @return integer Number of comments on post
-     */
-    public function getCommentCount()
-    {
-		return $this->getComments()->count();
-	}
-	
-	/**
-	 * @return string Link to comments section of post or comment form if there are no comments
+	 * Returns link to comment section of post.
+	 * @return string 
 	 */
 	public function displayCommentsLink() 
 	{

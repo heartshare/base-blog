@@ -56,7 +56,7 @@ class Comment extends \yii\db\ActiveRecord
         return [
             'comment_id' => 'Comment ID',
             'post_id' => 'Post ID',
-            'content' => 'Content',
+            'content' => 'Comment',
             'status' => 'Status',
             'author' => 'Author',
             'email' => 'Email',
@@ -74,6 +74,7 @@ class Comment extends \yii\db\ActiveRecord
     }
     
     /**
+     * Returns comment create time.
      * @return string Comment create time  
      */
     public function displayDate()
